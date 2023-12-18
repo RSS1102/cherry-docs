@@ -1,0 +1,6 @@
+{
+  "name": "cherry-markdown-press-docs",
+  "devDependencies": {
+    "cherry-markdown-press": "workspace:*"
+  }
+}

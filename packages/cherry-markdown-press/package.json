@@ -1,0 +1,29 @@
+{
+  "name": "cherry-markdown-press",
+  "version": "0.0.0",
+  "author": "@阿Cai",
+  "type": "module",
+  "main": "./dist/index.ts",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "dev:watch": "node scripts/watchFiles"
+  },
+  "exports": {
+    ".": {
+      "types": "./types/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "types"
+  ],
+  "keywords": [
+    "cherry-markdown",
+    "cherry-markdown-press"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rss1102/cherry-docs.git"
+  }
+}

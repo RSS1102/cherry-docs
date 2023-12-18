@@ -1,0 +1,13 @@
+{
+  "name": "cherry-markdown-press",
+  "version": "0.0.0",
+  "author": "@阿Cai",
+  "type": "module",
+  "devDependencies": {
+    "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "@changesets/cli": "^2.27.1",
+    "cherry-markdown": "^0.8.32"
+  }
+}
