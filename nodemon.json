@@ -1,0 +1,7 @@
+{
+  "verbose": true,
+  "watch": [
+    "packages/cherry-markdown-press/src"
+  ],
+  "ext": "ts"
+}
