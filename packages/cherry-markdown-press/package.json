@@ -6,7 +6,7 @@
   "main": "./dist/index.ts",
   "types": "./dist/index.d.ts",
   "scripts": {
-    "dev:watch": "node scripts/watchFiles"
+    "dev:rollup": "rollup --config rollup.config.ts --configPlugin typescript"
   },
   "exports": {
     ".": {
@@ -15,8 +15,7 @@
     }
   },
   "files": [
-    "dist",
-    "types"
+    "dist"
   ],
   "keywords": [
     "cherry-markdown",

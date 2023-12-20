@@ -3,11 +3,20 @@
   "version": "0.0.0",
   "author": "@阿Cai",
   "type": "module",
-  "devDependencies": {
-    "typescript": "^5.2.2"
+  "scripts": {
+    "dev": "nodemon --exec \"pnpm run --prefix=packages/cherry-markdown-press dev:rollup\""
   },
+  "packageManager": "pnpm@8.12.0",
   "dependencies": {
     "@changesets/cli": "^2.27.1",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-typescript": "^11.1.5",
+    "nodemon": "^3.0.2",
+    "rollup": "^4.9.1",
+    "tslib": "^2.6.2",
+    "typescript": "^5.2.2"
+  },
+  "devDependencies": {
     "cherry-markdown": "^0.8.32"
   }
 }
