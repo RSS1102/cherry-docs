@@ -2,7 +2,6 @@
   "name": "cherry-markdown-press",
   "version": "0.0.0",
   "author": "@阿Cai",
-  "type": "module",
   "scripts": {
     "dev": "nodemon --exec \"pnpm run --prefix=packages/cherry-markdown-press dev:rollup\""
   },
@@ -11,6 +10,9 @@
     "@changesets/cli": "^2.27.1",
     "@rollup/plugin-node-resolve": "^15.2.3",
     "@rollup/plugin-typescript": "^11.1.5",
+    "@rollup/plugin-commonjs": "^25.0.7",
+    "@rollup/plugin-run": "^3.0.2",
+    "@types/node": "^20.10.5",
     "nodemon": "^3.0.2",
     "rollup": "^4.9.1",
     "tslib": "^2.6.2",

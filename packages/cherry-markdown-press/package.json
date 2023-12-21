@@ -15,7 +15,8 @@
     }
   },
   "files": [
-    "dist"
+    "dist",
+    "types"
   ],
   "keywords": [
     "cherry-markdown",
@@ -24,5 +25,8 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/rss1102/cherry-docs.git"
+  },
+  "dependencies": {
+    "@types/node": "^20.10.5"
   }
 }
