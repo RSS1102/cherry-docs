@@ -1,0 +1,19 @@
+{
+  "name": "vite-plugin-cherry-markdown",
+  "version": "0.0.0-alpha",
+  "description": "A vite plugin.",
+  "main": "./src/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RSS1102"
+  },
+  "keywords": [
+    "vite"
+  ],
+  "author": "阿菜 Cai",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RSS1102"
+  },
+  "homepage": ""
+}
