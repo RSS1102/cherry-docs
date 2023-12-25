@@ -1,1 +1,1 @@
-# vite-plugin-vitepress-code-editor-preview
+# vite-plugin-cherry-markdown
