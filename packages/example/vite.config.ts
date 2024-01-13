@@ -5,9 +5,4 @@ import vitePluginCherryMarkdown from '../vite-plugin/src/index'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [vue(), vitePluginCherryMarkdown()], 
-  resolve: {
-    alias: {
-      'vue': 'vue/dist/vue.esm-bundler.js'
-    }
-  }
 })
