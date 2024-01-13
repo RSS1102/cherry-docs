@@ -1,5 +1,3 @@
 <template>
-  <div>
-  HelloWorld
-  </div>
+<RouterView></RouterView>
 </template>

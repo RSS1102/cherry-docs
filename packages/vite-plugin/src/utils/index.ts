@@ -36,11 +36,10 @@ export const checkCurrentDirectory = (targetFilePath: string): Directories[] => 
 
         let relativePath = normalizePath(relative(process.cwd(), fullPath)).replace('.md', '').replace('docs', '');
 
-        if (relativePath === '/index') relativePath = '/';
+        // if (relativePath === '/index') relativePath = '/';
 
         const markdown = fs.readFileSync(fullPath, 'utf8');
         const html = cherryEngineInstance.makeHtml(markdown);
-
         const fileObject = {
           path: relativePath,
           name: fileName,
@@ -55,5 +54,6 @@ export const checkCurrentDirectory = (targetFilePath: string): Directories[] => 
     console.error(e);
     throw new Error(e as string);
   }
+
   return directories;
 };
