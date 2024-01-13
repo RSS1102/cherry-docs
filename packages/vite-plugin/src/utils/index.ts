@@ -2,6 +2,7 @@ import { basename, dirname, join, relative, resolve } from 'path';
 import { fileURLToPath } from 'url';
 import fs from 'fs';
 import { normalizePath } from 'vite';
+
 const { default: CherryEngine } = require('cherry-markdown/dist/cherry-markdown.engine.core.common');
 
 const cherryEngineInstance = new CherryEngine({});
@@ -16,14 +17,12 @@ export const resolvePath = (filename: string): string => {
   return resolve(__dirname, filename);
 }
 
-
 /**
  * @description 获取当前文件夹下的所有文件
  * @param {string} targetFilePath
  */
 export const checkCurrentDirectory = (targetFilePath: string): Directories[] => {
   let directories: Directories[] = [];
-
   try {
     const currentDirectoryFiles = fs.readdirSync(targetFilePath);
     currentDirectoryFiles.forEach((file) => {
@@ -34,16 +33,19 @@ export const checkCurrentDirectory = (targetFilePath: string): Directories[] => 
         directories = directories.concat(checkCurrentDirectory(fullPath));
       } else if (fullPath.endsWith('.md')) {
         const fileName = basename(fullPath, '.md');
-        const relativePath = normalizePath(relative(process.cwd(), fullPath)).replace('.md', '')
+
+        let relativePath = normalizePath(relative(process.cwd(), fullPath)).replace('.md', '').replace('docs', '');
+
+        // if (relativePath === '/index') relativePath = '/';
+
         const markdown = fs.readFileSync(fullPath, 'utf8');
         const html = cherryEngineInstance.makeHtml(markdown);
-
         const fileObject = {
-          path: relativePath.replace('docs', ''),
+          path: relativePath,
           name: fileName,
           filePath: fullPath,
           markdown,
-          html,
+          html
         };
         directories.push(fileObject);
       }
@@ -52,5 +54,6 @@ export const checkCurrentDirectory = (targetFilePath: string): Directories[] => 
     console.error(e);
     throw new Error(e as string);
   }
+
   return directories;
 };
