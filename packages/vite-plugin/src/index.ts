@@ -1,5 +1,4 @@
 import fs, { existsSync, mkdirSync } from 'fs'
-import outdent from 'outdent';
 import { Plugin } from 'vite'
 import { checkCurrentDirectory } from './utils'
 import { dirname } from 'path';
@@ -8,9 +7,8 @@ export default function vitePluginCherryMarkdown(): Plugin {
   return {
     name: 'vite-plugin-cherry-markdown',
     resolveId(id) {
-      console.log(id);
       if (id.startsWith('images/')) {
-        return `/${id}`;
+        return `/assets/${id}`;
       }
     },
     load(id) {
@@ -27,20 +25,22 @@ export default function vitePluginCherryMarkdown(): Plugin {
 
           fs.writeFileSync(filePath,
             `<template>
+            <div class="cherry-markdown theme__violet" data-toolbar-theme="dark" data-inline-code-theme="red" data-code-block-theme="twilight">
            ${directory.html}
+           </div>
            </template>`);
 
           return `{
             path: '${directory.path}',
             component: () => import('/src/_docs${directory.path + '.vue'}')
-          }`.replace(/\n/g, '');
+          }`;
         });
-
 
         return `
         import { createRouter, createWebHistory } from 'vue-router'
         import { createSSRApp, defineComponent, h } from 'vue'
-        import App from './App.vue'
+        import 'cherry-markdown/dist/cherry-markdown.css'
+        import App from './App.vue' 
 
         const app = createSSRApp(App)
         const router = createRouter({
