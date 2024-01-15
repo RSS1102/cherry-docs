@@ -8,7 +8,8 @@
   "packageManager": "pnpm@8.12.0",
   "devDependencies": {
     "cherry-markdown": "0.8.33",
-    "vite": "^5.0.8"
+    "vite": "^5.0.8",
+    "sass": "^1.69.7"
   },
   "dependencies": {
     "@changesets/cli": "^2.27.1",

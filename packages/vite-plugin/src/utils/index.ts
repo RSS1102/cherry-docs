@@ -2,10 +2,11 @@ import { basename, dirname, join, relative, resolve } from 'path';
 import { fileURLToPath } from 'url';
 import fs from 'fs';
 import { normalizePath } from 'vite';
+import defaultConfig from './cherry.config';
 
 const { default: CherryEngine } = require('cherry-markdown/dist/cherry-markdown.engine.core.common');
 
-const cherryEngineInstance = new CherryEngine({});
+const cherryEngineInstance = new CherryEngine(defaultConfig);
 
 /**
  * @description 解析路径
