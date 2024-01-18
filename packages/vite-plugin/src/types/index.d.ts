@@ -1,8 +1,10 @@
 type Directories = {
-  path: string;
-  name: string;
-  filePath: string;
-  markdown: string;
-  html: string;
-
+  rootPath: string;
+  intro: {
+    path: string;
+    name: string;
+    filePath: string;
+    markdown: string;
+    html: string;
+  }[];
 }

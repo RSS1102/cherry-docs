@@ -1,17 +1,17 @@
 # 例子
 > [Github 地址](https://github.com/Tencent/cherry-markdown){target=_blank}
 
-- [full model](index.html){target=_blank}
-- [basic](basic.html){target=_blank}
-- [H5](h5.html){target=_blank}
-- [多实例](multiple.html){target=_blank}
-- [无 toolbar](notoolbar.html){target=_blank}
-- [纯预览模式](preview_only.html){target=_blank}
-- [注入](xss.html){target=_blank}
-- [API](api.html){target=_blank}
-- [图片所见即所得编辑尺寸](img.html){target=_blank}
-- [表格所见即所得编辑尺寸](table.html){target=_blank}
-- [标题自动序号](head_num.html){target=_blank}
+- [full model](index){target=_blank}
+- [basic](basic){target=_blank}
+- [H5](h5){target=_blank}
+- [多实例](multiple){target=_blank}
+- [无 toolbar](notoolbar){target=_blank}
+- [纯预览模式](preview_only){target=_blank}
+- [注入](xss){target=_blank}
+- [API](api){target=_blank}
+- [图片所见即所得编辑尺寸](img){target=_blank}
+- [表格所见即所得编辑尺寸](table){target=_blank}
+- [标题自动序号](head_num){target=_blank}
 
 # Cherry Markdown  { 简明手册 | jiǎn míng shǒu cè }
 
@@ -197,11 +197,11 @@
 **示例**
 
 ```
-让我们聊聊 `html`
+让我们聊聊 `
 ```
 
 **效果**
-让我们聊聊 `html`
+让我们聊聊 `
 
 ---
 
