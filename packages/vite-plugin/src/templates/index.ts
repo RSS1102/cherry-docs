@@ -1,18 +1,28 @@
-import fs, { existsSync, mkdirSync } from 'fs'
-import path, { dirname } from 'path';
-export const resolveTemplate = (routes: string[]) => {
+import fs from 'fs'
+import path from 'path';
 
-  const fileName = 'home.vue';
-  const fileDir = path.join(__dirname + '/' + fileName);
-  const filePath = path.join(process.cwd(), 'src/_docs/template/', fileName);
+/**
+ * @description 递归copy当前目录下的.vue文件到src/_docs/template目录下
+ * @param dir 
+ * @param baseDir 
+ */
+export const resolveTemplate = (dir = __dirname, baseDir = __dirname) => {
+  // 当前目录下的文件包含.vue的文件
+  const directories = fs.readdirSync(dir, { withFileTypes: true });
 
-  if (!existsSync(dirname(filePath))) {
-    mkdirSync(dirname(filePath), { recursive: true });
-  }
-  fs.copyFileSync(fileDir, filePath);
+  directories.forEach(dirent => {
+    const fullPath = path.join(dir, dirent.name);
 
-  routes.push(`{
-            path: '/',
-            component: () => import('/src/_docs/template/' + '${fileName}')
-          }`);
-}
+    if (dirent.isDirectory()) {
+      resolveTemplate(fullPath, baseDir); // 递归处理子目录
+    } else if (path.extname(dirent.name) === '.vue') {
+      const relativePath = path.relative(baseDir, fullPath);
+      const filePath = path.join(process.cwd(), 'src/_docs/template/', relativePath);
+
+      if (!fs.existsSync(path.dirname(filePath))) {
+        fs.mkdirSync(path.dirname(filePath), { recursive: true });
+      }
+      fs.copyFileSync(fullPath, filePath);
+    }
+  });
+};

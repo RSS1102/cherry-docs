@@ -14,45 +14,61 @@ export default function vitePluginCherryMarkdown(): Plugin {
     },
     load(id) {
       if (id.includes('src/main.ts')) {
+
+        const routes = [`{
+                  path: '/',
+                  component: () => import('/src/_docs/template/home.vue')
+                }`]
+
+
+
         const directories = checkCurrentDirectory("docs");
 
-        const routes = directories.map((directory) => {
-          const filePath = directory.filePath.replace('.md', '.vue').replace('docs', 'src/_docs');
-          const fileDir = dirname(filePath);
+        directories.map((directory) => {
+          directory.intro.map((intro) => {
+            const filePath = intro.filePath.replace('.md', '.vue').replace('docs', 'src/_docs');
+            const fileDir = dirname(filePath);
 
-          if (!existsSync(fileDir)) {
-            mkdirSync(fileDir, { recursive: true });
-          }
-
-          fs.writeFileSync(filePath,
-            `<template>
-            <div class="cherry-markdown theme__violet" data-toolbar-theme="dark" data-inline-code-theme="red" data-code-block-theme="twilight">
-           ${directory.html}
-           </div>
-           </template>`);
-
-          return `{
-            path: '${directory.path}',
-            component: () => import('/src/_docs${directory.path + '.vue'}')
-          }`;
+            if (!existsSync(fileDir)) mkdirSync(fileDir, { recursive: true });
+            fs.writeFileSync(filePath,
+              `<template>
+                  <div class="cherry-markdown theme__violet" data-toolbar-theme="dark" data-inline-code-theme="red" data-code-block-theme="twilight">
+                 ${intro.html}
+                 </div>
+                 </template>`
+            );
+          });
+          routes.push(
+            `{
+                  path: '/${directory.rootPath}',
+                  component: () => import('/src/_docs/template/layout.vue'),
+                  children:[
+                   ${directory.intro.map((intro) => `
+                    {
+                    path: '${intro.path}',
+                    component: () => import('/src/_docs${intro.path}.vue')
+                    }`
+            )}
+           ]
+          }`
+          );
         });
-
-        resolveTemplate(routes);
+        resolveTemplate();
 
         return `
-        import { createRouter, createWebHistory } from 'vue-router'
-        import { createSSRApp, defineComponent, h } from 'vue'
-        import 'cherry-markdown/dist/cherry-markdown.css'
-        import App from './App.vue' 
+              import { createRouter, createWebHistory } from 'vue-router'
+              import { createSSRApp, defineComponent, h } from 'vue'
+              import 'cherry-markdown/dist/cherry-markdown.css'
+              import App from './App.vue' 
 
-        const app = createSSRApp(App)
-        const router = createRouter({
-          history: createWebHistory(),
-          routes: [${routes}]
-        })
-        app.use(router)
-        app.mount('#app')
-        `
+              const app = createSSRApp(App)
+              const router = createRouter({
+                history: createWebHistory(),
+                routes: [${routes}]
+              })
+              app.use(router)
+              app.mount('#app')
+              `
       }
     },
   }

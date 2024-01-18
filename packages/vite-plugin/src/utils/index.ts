@@ -26,6 +26,7 @@ export const checkCurrentDirectory = (targetFilePath: string): Directories[] => 
   let directories: Directories[] = [];
   try {
     const currentDirectoryFiles = fs.readdirSync(targetFilePath);
+
     currentDirectoryFiles.forEach((file) => {
       const fullPath = join(targetFilePath.toString(), file);
       const isDirectory = fs.statSync(fullPath).isDirectory();
@@ -35,7 +36,8 @@ export const checkCurrentDirectory = (targetFilePath: string): Directories[] => 
       } else if (fullPath.endsWith('.md')) {
         const fileName = basename(fullPath, '.md');
 
-        let relativePath = normalizePath(relative(process.cwd(), fullPath)).replace('.md', '').replace('docs', '');
+        const relativePath = normalizePath(relative(process.cwd(), fullPath)).replace('.md', '').replace('docs', '');
+        const rootPath = relativePath.split('/')[1] || '';
 
         // if (relativePath === '/index') relativePath = '/';
 
@@ -46,10 +48,18 @@ export const checkCurrentDirectory = (targetFilePath: string): Directories[] => 
           name: fileName,
           filePath: fullPath,
           markdown,
-          html
-        };
-        directories.push(fileObject);
-      }
+          html,
+        }
+        const directoryIndex = directories.findIndex(dir => dir.rootPath === rootPath);
+        if (directoryIndex !== -1) {
+          directories[directoryIndex].intro.push(fileObject);
+        } else {
+          directories.push({
+            rootPath,
+            intro: [fileObject]
+          });
+        }
+      };
     });
   } catch (e) {
     console.error(e);
