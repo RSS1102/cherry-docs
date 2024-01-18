@@ -2,6 +2,7 @@ import fs, { existsSync, mkdirSync } from 'fs'
 import { Plugin } from 'vite'
 import { checkCurrentDirectory } from './utils'
 import { dirname } from 'path';
+import { resolveTemplate } from './templates';
 
 export default function vitePluginCherryMarkdown(): Plugin {
   return {
@@ -35,6 +36,8 @@ export default function vitePluginCherryMarkdown(): Plugin {
             component: () => import('/src/_docs${directory.path + '.vue'}')
           }`;
         });
+
+        resolveTemplate(routes);
 
         return `
         import { createRouter, createWebHistory } from 'vue-router'

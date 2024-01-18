@@ -1,0 +1,205 @@
+<template>
+  <div class="home">
+    <div class="head">
+      <div class="head--warp">
+        <div class="head--warp__logo">
+          <img src="/logo.svg" />
+          <span>Cherry Markdown</span>
+        </div>
+        <div class="head--warp__bar">
+          <div class="head--warp__bar-item">Guide</div>
+          <div class="head--warp__bar-item">Switch todo</div>
+          <div class="head--warp__bar-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="1.6em" height="1.6em" viewBox="0 0 24 24">
+              <path fill="currentColor"
+                d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5c.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34c-.46-1.16-1.11-1.47-1.11-1.47c-.91-.62.07-.6.07-.6c1 .07 1.53 1.03 1.53 1.03c.87 1.52 2.34 1.07 2.91.83c.09-.65.35-1.09.63-1.34c-2.22-.25-4.55-1.11-4.55-4.92c0-1.11.38-2 1.03-2.71c-.1-.25-.45-1.29.1-2.64c0 0 .84-.27 2.75 1.02c.79-.22 1.65-.33 2.5-.33c.85 0 1.71.11 2.5.33c1.91-1.29 2.75-1.02 2.75-1.02c.55 1.35.2 2.39.1 2.64c.65.71 1.03 1.6 1.03 2.71c0 3.82-2.34 4.66-4.57 4.91c.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2">
+              </path>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="container--warp">
+        <div class="container--warp__introduce">
+          <div class="container--warp__introduce__title">Cherry Markdown</div>
+          <div class="container--warp__introduce__detail">Cherry Markdown Editor is a Javascript Markdown editor. It has
+            the
+            advantages such as out-of-the-box,lightweight and easy to extend. It can run in browser or server(with
+            NodeJs).
+          </div>
+          <div class="container__warp--introduce__btn">
+            <a class="container--warp__introduce__btn-item" href="/guide/index">Get Started</a>
+            <a class="container--warp__introduce__btn-item" target="_blank"
+              href="https://github.com/Tencent/cherry-markdown">View Github</a>
+          </div>
+        </div>
+        <div class="container--warp__logo"><img src="/logo.svg" /></div>
+      </div>
+    </div>
+
+    <div class="details">
+      <div v-for="(item, index) in details" class="details-item">
+        <div :id="item.title" class="details-item__title">{{ item.title }}</div>
+        <div :id="item.title" class="details-item__icon">{{ item.icon }}</div>
+        <div :id="item.title" class="details-item__detail">{{ item.detail }}</div>
+      </div>
+
+    </div>
+  </div>
+</template>
+<script setup lang="ts">
+const details = [
+  {
+    title: '快速使用',
+    icon: '🚀',
+    detail: '可以通过非常简单的方式调用和实例化 Cherry Markdown Editor，实例化的 Cherry Markdown Editor 默认支持最常用的 Markdown 语法（如标题、目录、流程图、公式等）。',
+  },
+  {
+    title: '跨框架',
+    icon: '🎨',
+    detail: 'Cherry Markdown 编辑器应由纯 JavaScript 实现，不应依赖 Angular、Vue、React 等框架技术。框架只提供容器环境。它可以在浏览器或服务器（使用 NodeJs）中运行。',
+  },
+  {
+    title: '易于扩展',
+    icon: '📝',
+    detail: '当Cherry Markdown 编辑器支持的语法不能满足您的需求时，可以快速进行二次开发或功能扩展。',
+  }
+]
+
+</script>
+<style scoped lang="scss">
+.home {
+  position: relative;
+}
+
+.head {
+  position: fixed;
+  width: 100%;
+
+  &--warp {
+    height: 64px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-bottom: 1px solid #ebebeb;
+    padding: 0 64px;
+
+    &__logo {
+      width: auto;
+      height: 42px;
+      display: flex;
+      align-items: center;
+      font-weight: bold;
+      cursor: pointer;
+
+      img {
+        width: 36px;
+      }
+    }
+
+    &__bar {
+      display: flex;
+      align-items: center;
+
+      &-item {
+        padding: 0 10px;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 122px 0 64px 0;
+
+  &--warp {
+    display: flex;
+    max-width: 1150px;
+
+
+    &__introduce {
+      width: 812px;
+
+      &__title {
+        font-size: 42px;
+        font-weight: 800;
+        background-image: linear-gradient(120deg, #bd34fe 30%, #41d1ff);
+        background-clip: text;
+        color: transparent;
+      }
+
+      &__detail {
+        font-size: 22px;
+        color: rgba(60, 60, 67, 0.78);
+        margin: 48px 0;
+      }
+
+      &__btn {
+        display: flex;
+        align-items: center;
+
+        &-item {
+          margin-left: 24px;
+          padding: 10px 20px;
+          border-radius: 25px;
+          border: none;
+          background-color: #5672cd;
+          color: #fff;
+          font-weight: bold;
+          cursor: pointer;
+          text-decoration: none;
+        }
+      }
+    }
+
+    &__logo {
+      width: 462px;
+
+      img {
+        margin: 0 56px;
+        width: 260px;
+      }
+    }
+  }
+}
+
+.details {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  &-item {
+    width: 300px;
+    height: 300px;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 20px;
+    background-color: #f4f4f4;
+
+    &__title {
+      font-size: 26px;
+      font-weight: 800;
+      background-image: linear-gradient(120deg, #bd34fe 30%, #41d1ff);
+      background-clip: text;
+      color: transparent;
+    }
+
+    &__icon {
+      font-size: 28px;
+      margin: 10px;
+    }
+
+    &__detail {
+      font-size: 16px;
+      color: rgba(60, 60, 67, 0.78);
+      margin-top: 20px;
+    }
+  }
+}
+</style>
