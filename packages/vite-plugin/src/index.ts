@@ -10,17 +10,18 @@ export default function vitePluginCherryMarkdown(): Plugin {
     resolveId(id) {
       if (id.startsWith('images/')) {
         return `/assets/${id}`;
-      }
+      };
+
+      if (id === 'cherryConfig') {
+        console.log(id);
+      };
     },
     load(id) {
       if (id.includes('src/main.ts')) {
-
         const routes = [`{
                   path: '/',
                   component: () => import('/src/_docs/template/home.vue')
                 }`]
-
-
 
         const directories = checkCurrentDirectory("docs");
 
@@ -69,6 +70,10 @@ export default function vitePluginCherryMarkdown(): Plugin {
               app.use(router)
               app.mount('#app')
               `
+      };
+
+      if (id === 'cherryConfig') {
+        console.log("加载了cherryConfig", id);
       }
     },
   }
